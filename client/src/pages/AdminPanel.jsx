@@ -73,7 +73,7 @@ function AdminPanel() {
 
   const handleSave = async () => {
     try {
-      await axios.post("http://localhost:3800/create-user", formData);
+      await axios.post("http://15.206.171.89:3800/create-user", formData);
       handleClose();
       getUser();
       setFormData({
@@ -92,14 +92,14 @@ function AdminPanel() {
 
   const getUser = async () => {
     await axios
-      .get("http://localhost:3800/get-user")
+      .get("http://15.206.171.89:3800/get-user")
       .then((result) => setGetUserData(result.data))
       .catch((err) => console.error(err));
   };
 
   const getForm = async () => {
     await axios
-      .get("http://localhost:3700/spark-form")
+      .get("http://15.206.171.89:3700/spark-form")
       .then((result) => setGetFormData(result.data))
       .catch((err) => console.error(err));
   };
