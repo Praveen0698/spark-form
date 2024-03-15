@@ -120,7 +120,6 @@ const Mainfile = () => {
   useEffect(() => {
     if (state) {
       const tokenData = jwtDecode(state.accesstoken);
-      console.log(tokenData);
       setBgColor(tokenData.colorPicker);
       setText(tokenData.companyName);
       setAddress(tokenData.address);
@@ -157,7 +156,7 @@ const Mainfile = () => {
 
   const handleSave = async () => {
     await axios
-      .post("http://65.2.179.63:3700/spark-form", formData, {
+      .post("http://localhost:3600/spark-form", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -166,8 +165,6 @@ const Mainfile = () => {
       .catch((err) => console.error(err));
   };
 
-  console.log(file);
-
   return (
     <>
       <div className="fullpage">
@@ -175,7 +172,7 @@ const Mainfile = () => {
           <div className="headerr" style={{ backgroundColor: `${bgColor}` }}>
             <div>
               <img
-                src={`http://65.2.179.63:3800/Images/${file}`}
+                src={`http://localhost:3800/Images/${file}`}
                 alt=""
                 className="logo-img"
               />

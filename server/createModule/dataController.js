@@ -7,7 +7,6 @@ exports.createUser = async (req, res) => {
     const user = await userModel.findOne({
       username: req.body.userName,
     });
-    console.log(user);
     if (user) {
       res.json("failure");
     } else {
@@ -20,7 +19,7 @@ exports.createUser = async (req, res) => {
         companyName: req.body.companyName,
         colorPicker: req.body.colorPicker,
         address: req.body.address,
-        file: req.files[0].filename,
+        file: req.file.filename,
       });
       res.json("success");
     }

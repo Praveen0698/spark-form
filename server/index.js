@@ -11,10 +11,10 @@ app.listen(ADMIN_PORT, () => {
   console.log(`Admin server started on port ${ADMIN_PORT}`);
 });
 
-formApp.listen(FORM_PORT, () => {
-  console.log(`Form server started on port ${FORM_PORT}`);
-});
+// formApp.listen(FORM_PORT, () => {
+//   console.log(`Form server started on port ${FORM_PORT}`);
+// });
 
-createApp.listen(USER_PORT, () => {
-  console.log(`User server started on port ${USER_PORT}`);
-});
+// createApp.listen(USER_PORT, () => {
+//   console.log(`User server started on port ${USER_PORT}`);
+// });
