@@ -21,7 +21,7 @@ const LoginAdmin = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post("http://65.2.179.63:3600/admin-form", formData)
+      .post("http://13.201.37.198:3600/admin-form", formData)
       .then((result) => {
         if (result.data === "failure") {
           setError("** Wrong Username or Password");
