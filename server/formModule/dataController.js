@@ -16,7 +16,6 @@ exports.createForm = async (req, res) => {
     const educationFiles = req.files.filter((item) =>
       item.fieldname.startsWith("education")
     );
-    console.log(educationFiles);
 
     const form = new formModel({
       photo: photo ? photo[0].filename : "",

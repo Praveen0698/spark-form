@@ -373,11 +373,12 @@ input[type="password"] {
 .headerr {
   display: flex;
   padding: 10px;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 .logo-img {
-  height: 110px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
   margin-left: 100%;
 }
 .header-div {

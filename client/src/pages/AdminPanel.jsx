@@ -21,16 +21,21 @@ function AdminPanel() {
     password: "",
     companyName: "",
     colorPicker: "",
+    address: "",
+    file: "",
   });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
+    setError("");
     setFormData({
       userName: "",
       password: "",
       companyName: "",
       colorPicker: "",
+      address: "",
+      file: "",
     });
   };
   const handleTableOpen = () => setOpenTable(true);
@@ -71,17 +76,32 @@ function AdminPanel() {
     }
   }, [color]);
 
+  const [error, setError] = useState("");
+
   const handleSave = async () => {
     try {
-      await axios.post("http://15.206.171.89:3800/create-user", formData);
-      handleClose();
-      getUser();
-      setFormData({
-        userName: "",
-        password: "",
-        companyName: "",
-        colorPicker: "",
-      });
+      await axios
+        .post("http://65.2.179.63:3800/create-user", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          if (res.data === "failure") {
+            setError("** User already exist");
+          } else {
+            handleClose();
+            getUser();
+            setFormData({
+              userName: "",
+              password: "",
+              companyName: "",
+              colorPicker: "",
+              address: "",
+            });
+          }
+        })
+        .catch((err) => console.error(err));
     } catch (error) {
       console.error(error);
     }
@@ -92,14 +112,14 @@ function AdminPanel() {
 
   const getUser = async () => {
     await axios
-      .get("http://15.206.171.89:3800/get-user")
+      .get("http://65.2.179.63:3800/get-user")
       .then((result) => setGetUserData(result.data))
       .catch((err) => console.error(err));
   };
 
   const getForm = async () => {
     await axios
-      .get("http://15.206.171.89:3700/spark-form")
+      .get("http://65.2.179.63:3700/spark-form")
       .then((result) => setGetFormData(result.data))
       .catch((err) => console.error(err));
   };
@@ -164,7 +184,7 @@ function AdminPanel() {
           >
             <Button
               onClick={handleClose}
-              style={{ marginTop: "-30px", marginLeft: "96%" }}
+              style={{ marginTop: "-30px", marginLeft: "94%" }}
             >
               <ClearIcon />
             </Button>
@@ -182,7 +202,7 @@ function AdminPanel() {
                 onChange={handleInputChange}
               />
               <TextField
-                style={{ margin: "10px 0" }}
+                style={{ margin: "5px 0" }}
                 fullWidth
                 label="Password"
                 id="fullWidth2"
@@ -191,7 +211,7 @@ function AdminPanel() {
                 onChange={handleInputChange}
               />
               <TextField
-                style={{ margin: "10px 0" }}
+                style={{ margin: "5px 0" }}
                 fullWidth
                 label="Company Name"
                 id="fullWidth3"
@@ -199,12 +219,27 @@ function AdminPanel() {
                 value={formData.companyName}
                 onChange={handleInputChange}
               />
+              <TextField
+                style={{ margin: "5px 0" }}
+                fullWidth
+                label="Address"
+                id="fullWidth3"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+              />
+              <TextField
+                type="file"
+                style={{ margin: "5px 0" }}
+                name="file"
+                onChange={handleInputChange}
+              />
               <div className="input-group">
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    marginTop: "10px",
+                    marginTop: "5px",
                     gap: "10px",
                   }}
                 >
@@ -221,6 +256,15 @@ function AdminPanel() {
                   </div>
                 </div>
               </div>
+              <p
+                style={{
+                  color: "red",
+                  marginTop: "-20px",
+                  marginBottom: "2rem",
+                }}
+              >
+                {error}
+              </p>
               <Button
                 style={{
                   backgroundColor: "green",
@@ -263,7 +307,7 @@ function AdminPanel() {
           >
             <Button
               onClick={handleTableClose}
-              style={{ marginTop: "-40px", marginLeft: "96%" }}
+              style={{ marginTop: "-40px", marginLeft: "94%" }}
             >
               <ClearIcon />
             </Button>

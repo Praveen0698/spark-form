@@ -4,16 +4,26 @@ const jwt = require("jsonwebtoken");
 
 exports.createUser = async (req, res) => {
   try {
-    await userModel.create({
+    const user = await userModel.findOne({
       username: req.body.userName,
-      password: CryptoJS.AES.encrypt(
-        req.body.password,
-        process.env.PASS_USER
-      ).toString(),
-      companyName: req.body.companyName,
-      colorPicker: req.body.colorPicker,
     });
-    res.json("success");
+    console.log(user);
+    if (user) {
+      res.json("failure");
+    } else {
+      await userModel.create({
+        username: req.body.userName,
+        password: CryptoJS.AES.encrypt(
+          req.body.password,
+          process.env.PASS_USER
+        ).toString(),
+        companyName: req.body.companyName,
+        colorPicker: req.body.colorPicker,
+        address: req.body.address,
+        file: req.files[0].filename,
+      });
+      res.json("success");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -43,6 +53,8 @@ exports.findUser = async (req, res) => {
             id: user._id,
             companyName: user.companyName,
             colorPicker: user.colorPicker,
+            address: user.address,
+            file: user.file,
             userType: "user",
           },
           process.env.JWT_SEC,

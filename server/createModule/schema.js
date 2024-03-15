@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema({
   password: String,
   companyName: String,
   colorPicker: String,
+  file: String,
+  address: String,
 });
 
 const userModel = mongoose.model("user", userSchema);

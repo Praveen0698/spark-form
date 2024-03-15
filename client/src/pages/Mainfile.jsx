@@ -113,6 +113,8 @@ const Mainfile = () => {
   });
   const [bgColor, setBgColor] = useState("");
   const [text, setText] = useState("");
+  const [address, setAddress] = useState("");
+  const [file, setFile] = useState("");
   const { state } = useLocation();
 
   useEffect(() => {
@@ -121,6 +123,8 @@ const Mainfile = () => {
 
       setBgColor(tokenData.colorPicker);
       setText(tokenData.companyName);
+      setAddress(tokenData.address);
+      setFile(tokenData.file);
     } else {
       navigation("/");
     }
@@ -153,7 +157,7 @@ const Mainfile = () => {
 
   const handleSave = async () => {
     await axios
-      .post("http://15.206.171.89:3700/spark-form", formData, {
+      .post("http://65.2.179.63:3700/spark-form", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -162,15 +166,18 @@ const Mainfile = () => {
       .catch((err) => console.error(err));
   };
 
-  console.log(formData);
   return (
     <>
       <div className="fullpage">
         <div className="headerrr">
           <div className="headerr" style={{ backgroundColor: `${bgColor}` }}>
-            {/* <div>
-              <img src={""} alt="" className="logo-img" />
-            </div> */}
+            <div>
+              <img
+                src={`http://65.2.179.63:3800/Images/${file}`}
+                alt=""
+                className="logo-img"
+              />
+            </div>
             <h1>{text}</h1>
           </div>
         </div>
@@ -195,7 +202,22 @@ const Mainfile = () => {
         </div>
         <div className="footer" style={{ backgroundColor: `${bgColor}` }}>
           <div className="full-col"></div>
-          <div className="full-color"></div>
+          <div
+            className="full-color"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            {" "}
+            <p
+              style={{ fontSize: "0.8rem", color: "white", marginBottom: "0" }}
+            >
+              {" "}
+              {address}
+            </p>
+          </div>
         </div>
       </div>
       <Modal
