@@ -120,7 +120,7 @@ const Mainfile = () => {
   useEffect(() => {
     if (state) {
       const tokenData = jwtDecode(state.accesstoken);
-
+      console.log(tokenData);
       setBgColor(tokenData.colorPicker);
       setText(tokenData.companyName);
       setAddress(tokenData.address);
@@ -165,6 +165,8 @@ const Mainfile = () => {
       .then((res) => handleOpen())
       .catch((err) => console.error(err));
   };
+
+  console.log(file);
 
   return (
     <>

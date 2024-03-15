@@ -7,6 +7,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import noDataImg from "../assets/nodata.png";
 
 function AdminPanel() {
   const navigation = useNavigate();
@@ -343,31 +344,44 @@ function AdminPanel() {
         </Modal>
       </header>
       <div>
-        <div></div>
-        <Table striped bordered hover>
-          <thead>
-            <tr className="table-dark">
-              <th>Sl No</th>
-              <th>Candidate Name</th>
-              <th>Date Of Birth</th>
-              <th>State</th>
-              <th>Declaration Date</th>
-              <th>Declaration Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems?.map((item, index) => (
-              <tr>
-                <td>{index + indexOfFirstItem + 1}</td>
-                <td>{item.name}</td>
-                <td>{item.dob}</td>
-                <td>{item.state}</td>
-                <td>{item.declarationDate}</td>
-                <td>{item.declarationName}</td>
+        {getFormData.length > 0 ? (
+          <Table striped bordered hover>
+            <thead>
+              <tr className="table-dark">
+                <th>Sl No</th>
+                <th>Candidate Name</th>
+                <th>Date Of Birth</th>
+                <th>State</th>
+                <th>Declaration Date</th>
+                <th>Declaration Name</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {currentItems?.map((item, index) => (
+                <tr>
+                  <td>{index + indexOfFirstItem + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.dob}</td>
+                  <td>{item.state}</td>
+                  <td>{item.declarationDate}</td>
+                  <td>{item.declarationName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+              position: "absolute",
+              top: "35%",
+            }}
+          >
+            <img src={noDataImg} alt="no-data" />
+          </div>
+        )}
+
         <div style={{ position: "absolute", bottom: "2%", left: "10px" }}>
           <div>
             <button onClick={prevPage} disabled={currentPage === 1}>
