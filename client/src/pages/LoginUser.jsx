@@ -21,7 +21,7 @@ const LoginUser = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post("http://13.201.37.198:3600/user-form", formData)
+      .post("http://localhost:3600/user-form", formData)
       .then((result) => {
         console.log(result);
         if (result.data === "failure") {
