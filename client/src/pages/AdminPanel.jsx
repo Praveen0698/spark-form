@@ -82,7 +82,7 @@ function AdminPanel() {
   const handleSave = async () => {
     try {
       await axios
-        .post("http://localhost:3600/create-user", formData, {
+        .post("https://api.kvs-library-granthalaya.in/create-user", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -113,14 +113,14 @@ function AdminPanel() {
 
   const getUser = async () => {
     await axios
-      .get("http://localhost:3600/get-user")
+      .get("https://api.kvs-library-granthalaya.in/get-user")
       .then((result) => setGetUserData(result.data))
       .catch((err) => console.error(err));
   };
 
   const getForm = async () => {
     await axios
-      .get("http://localhost:3600/spark-form")
+      .get("https://api.kvs-library-granthalaya.in/spark-form")
       .then((result) => setGetFormData(result.data))
       .catch((err) => console.error(err));
   };

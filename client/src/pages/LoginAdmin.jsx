@@ -21,7 +21,7 @@ const LoginAdmin = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post("http://localhost:3600/admin-form", formData)
+      .post("https://api.kvs-library-granthalaya.in/admin-form", formData)
       .then((result) => {
         if (result.data === "failure") {
           setError("** Wrong Username or Password");
