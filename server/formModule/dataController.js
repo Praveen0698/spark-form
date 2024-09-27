@@ -3,6 +3,7 @@ const formModel = require("./schema");
 exports.createForm = async (req, res) => {
   try {
     const formData = req.body;
+    console.log(req.files);
     const photo = req.files.filter((item) => item.fieldname === "photo");
     const signOne = req.files.filter((item) => item.fieldname === "signOne");
     const signTwo = req.files.filter((item) => item.fieldname === "signTwo");
@@ -17,10 +18,12 @@ exports.createForm = async (req, res) => {
       item.fieldname.startsWith("education")
     );
 
+    console.log(photo.length > 0);
+
     const form = new formModel({
-      photo: photo ? photo[0].filename : "",
-      signOne: signOne ? signOne[0].filename : "",
-      signTwo: signTwo ? signTwo[0].filename : "",
+      photo: photo.length > 0 ? photo[0].filename : "",
+      signOne: signOne.length > 0 ? signOne[0].filename : "",
+      signTwo: signTwo.length > 0 ? signTwo[0].filename : "",
       officeEmployeeCode: formData.officeEmployeeCode || "",
       officeDepartment: formData.officeDepartment || "",
       officeOffice: formData.officeOffice || "",
@@ -50,8 +53,8 @@ exports.createForm = async (req, res) => {
       interReligionCaste: formData.interReligionCaste || "",
       spouseEmployeed: formData.spouseEmployeed || "",
       spouseEmployeedIn: formData.spouseEmployeedIn || "",
-      addressProof: addressProof ? addressProof[0].filename : "",
-      panCardFile: panCardFile ? panCardFile[0].filename : "",
+      addressProof: addressProof.length > 0 ? addressProof[0].filename : "",
+      panCardFile: panCardFile.length > 0 ? panCardFile[0].filename : "",
       presentHouseName: formData.presentHouseName || "",
       presentStreetName: formData.presentStreetName || "",
       presentPlace: formData.presentPlace || "",
@@ -93,7 +96,8 @@ exports.createForm = async (req, res) => {
         institution: formData.education[index].institution || "",
         cgpaPercentage: formData.education[index].cgpaPercentage || "",
         regNoYear: formData.education[index].regNoYear || "",
-        uploadOne: educationFiles ? educationFiles[index].filename : "",
+        uploadOne:
+          educationFiles.length > 0 ? educationFiles[index].filename : "",
       })),
       accountNumber: formData.accountNumber || "",
       bankName: formData.bankName || "",
@@ -109,7 +113,7 @@ exports.createForm = async (req, res) => {
 
     res.status(201).json({ message: "Form submitted successfully" });
   } catch (error) {
-    console.error("Error submitting form:", error);
+    console.log("Error submitting form:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

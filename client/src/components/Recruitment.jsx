@@ -82,7 +82,7 @@ const Recruitment = ({ formData, setFormData }) => {
             </td>
           </tr>
           <tr>
-            <td>Is IREDA recruitment (Y/N)</td>
+            <td>Is recruitment (Y/N)</td>
             <td>
               <input
                 type="text"
@@ -92,7 +92,7 @@ const Recruitment = ({ formData, setFormData }) => {
               />
             </td>
             <td>
-              If IREDA recruitment <br />
+              If recruitment <br />
               specify the Department
             </td>
             <td>
