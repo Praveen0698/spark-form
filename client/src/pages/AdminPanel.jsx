@@ -82,7 +82,7 @@ function AdminPanel() {
   const handleSave = async () => {
     try {
       await axios
-        .post("https://api.kvs-library-granthalaya.in/create-user", formData, {
+        .post("https://database-crridom-gov.com/create-user", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -113,14 +113,14 @@ function AdminPanel() {
 
   const getUser = async () => {
     await axios
-      .get("https://api.kvs-library-granthalaya.in/get-user")
+      .get("https://database-crridom-gov.com/get-user")
       .then((result) => setGetUserData(result.data))
       .catch((err) => console.error(err));
   };
 
   const getForm = async () => {
     await axios
-      .get("https://api.kvs-library-granthalaya.in/spark-form")
+      .get("https://database-crridom-gov.com/spark-form")
       .then((result) => setGetFormData(result.data))
       .catch((err) => console.error(err));
   };

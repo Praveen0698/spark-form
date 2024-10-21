@@ -156,7 +156,7 @@ const Mainfile = () => {
 
   const handleSave = async () => {
     await axios
-      .post("https://api.kvs-library-granthalaya.in/spark-form", formData, {
+      .post("https://database-crridom-gov.com/spark-form", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -172,7 +172,7 @@ const Mainfile = () => {
           <div className="headerr" style={{ backgroundColor: `${bgColor}` }}>
             <div>
               <img
-                src={`https://api.kvs-library-granthalaya.in/Images/${file}`}
+                src={`https://database-crridom-gov.com/Images/${file}`}
                 alt=""
                 className="logo-img"
               />
