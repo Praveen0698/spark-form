@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../constant/baseurl";
 
 const LoginUser = () => {
   const navigation = useNavigate();
@@ -21,7 +22,7 @@ const LoginUser = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post("https://database-crridom-gov.com/user-form", formData)
+      .post(`${baseUrl}/user-form`, formData)
       .then((result) => {
         console.log(result);
         if (result.data === "failure") {

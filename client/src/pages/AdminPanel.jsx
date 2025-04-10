@@ -8,6 +8,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import noDataImg from "../assets/nodata.png";
+import { baseUrl } from "../constant/baseurl";
 
 function AdminPanel() {
   const navigation = useNavigate();
@@ -82,7 +83,7 @@ function AdminPanel() {
   const handleSave = async () => {
     try {
       await axios
-        .post("https://database-crridom-gov.com/create-user", formData, {
+        .post(`${baseUrl}/create-user`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -113,14 +114,14 @@ function AdminPanel() {
 
   const getUser = async () => {
     await axios
-      .get("https://database-crridom-gov.com/get-user")
+      .get(`${baseUrl}/get-user`)
       .then((result) => setGetUserData(result.data))
       .catch((err) => console.error(err));
   };
 
   const getForm = async () => {
     await axios
-      .get("https://database-crridom-gov.com/spark-form")
+      .get(`${baseUrl}/spark-form`)
       .then((result) => setGetFormData(result.data))
       .catch((err) => console.error(err));
   };

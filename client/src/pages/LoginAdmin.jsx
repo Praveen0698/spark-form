@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../constant/baseurl";
 
 const LoginAdmin = () => {
   const navigation = useNavigate();
@@ -21,7 +22,7 @@ const LoginAdmin = () => {
 
   const handleSubmit = async () => {
     await axios
-      .post("https://database-crridom-gov.com/admin-form", formData)
+      .post(`${baseUrl}/admin-form`, formData)
       .then((result) => {
         if (result.data === "failure") {
           setError("** Wrong Username or Password");

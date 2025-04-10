@@ -12,6 +12,7 @@ import axios from "axios";
 import { Button, Modal, Box, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { baseUrl } from "../constant/baseurl";
 
 const Mainfile = () => {
   const navigation = useNavigate();
@@ -156,7 +157,7 @@ const Mainfile = () => {
 
   const handleSave = async () => {
     await axios
-      .post("https://database-crridom-gov.com/spark-form", formData, {
+      .post(`${baseUrl}/spark-form`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -172,7 +173,7 @@ const Mainfile = () => {
           <div className="headerr" style={{ backgroundColor: `${bgColor}` }}>
             <div>
               <img
-                src={`https://database-crridom-gov.com/Images/${file}`}
+                src={`${baseUrl}/Images/${file}`}
                 alt=""
                 className="logo-img"
               />
